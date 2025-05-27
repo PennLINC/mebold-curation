@@ -16,4 +16,6 @@ The code in this repo assumes the following:
 3. Raw data are on Flywheel, in the project `bbl/MEBOLD`.
 4. Your CUBIC project directory is at `/cbica/projects/mebold`.
 
+The code in `processing/` can be used to process the data with fMRIPrep, fMRIPost-AROMA, tedana, and XCP-D.
+
 TODO: Create conda environment config file.
