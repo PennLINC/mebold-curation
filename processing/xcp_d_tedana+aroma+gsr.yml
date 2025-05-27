@@ -1,0 +1,42 @@
+name: tedana+aroma
+description: |
+    Nuisance regressors were selected according to the 'tedana+aroma' strategy.
+    First, the ICA-AROMA algorithm was applied to the MNI152NLin6Asym 2 mm resolution BOLD data,
+    using fMRIPost-AROMA [@pruim2015ica].
+    Next, the mixing matrix from ICA-AROMA was provided to tedana [CITE] and
+    multi-echo ICA denoising was performed using the "minimal" decision tree.
+    The union of AROMA motion-labeled components and tedana non-BOLD components
+    was selected as nuisance regressors.
+    Finally, the nuisance components were orthogonalized with respect to the
+    signal components not flagged as noise by either tedana or ICA-AROMA.
+    This set of orthogonalized nuisance components was selected for the nuisance regression,
+    along with mean white matter signal, mean cerebrospinal fluid signal, and mean global signal
+    [@benchmarkp;@satterthwaite_2013].
+confounds:
+    preproc_confounds:
+        dataset: preprocessed
+        query:
+            space: null
+            cohort: null
+            res: null
+            den: null
+            desc: confounds
+            extension: .tsv
+            suffix: timeseries
+        columns:
+        - global_signal
+        - csf
+        - white_matter
+    tedana_aroma_confounds:
+        dataset: tedana_aroma
+        query:
+            space: null
+            cohort: null
+            res: null
+            den: null
+            desc: confounds
+            extension: .tsv
+            suffix: timeseries
+        columns:
+        # Regular expressions begin with ``^`` and end with ``$``.
+        - ^ICA.*$
